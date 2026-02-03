@@ -50,7 +50,7 @@ Uma interface gráfica moderna e funcional para o utilitário **robocopy.exe** d
 
 ```bash
 # Clone o repositório
-git clone https://github.com/SEU_USUARIO/robackup.git
+git clone https://github.com/osbarcelos79/robackup.git
 cd robackup/robackup-app
 
 # Instale as dependências
