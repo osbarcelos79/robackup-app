@@ -13,7 +13,9 @@
     "electron": "electron .",
     "electron:dev": "concurrently -k \"npm run dev\" \"wait-on http://localhost:5173 && electron .\"",
     "electron:build": "npm run build && electron-builder",
-    "electron:build:win": "npm run build && electron-builder --win"
+    "electron:build:win": "npm run build && electron-builder --win",
+    "electron:build:portable": "npm run build && electron-builder --win portable",
+    "package": "npm run build && electron-packager . Robackup --platform=win32 --arch=x64 --out=release --overwrite --asar"
   },
   "dependencies": {
     "react": "^19.2.0",
@@ -27,6 +29,7 @@
     "concurrently": "^9.2.1",
     "electron": "^40.1.0",
     "electron-builder": "^26.7.0",
+    "electron-packager": "^17.1.2",
     "electron-squirrel-startup": "^1.0.1",
     "eslint": "^9.39.1",
     "eslint-plugin-react-hooks": "^7.0.1",
@@ -49,13 +52,18 @@
     ],
     "win": {
       "target": [
-        "nsis"
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
       ],
-      "icon": "public/icon.ico"
+      "icon": "public/icon.svg",
+      "signAndEditExecutable": false
     },
-    "nsis": {
-      "oneClick": false,
-      "allowToChangeInstallationDirectory": true
+    "portable": {
+      "artifactName": "Robackup-${version}-Portable.exe"
     }
   }
 }
